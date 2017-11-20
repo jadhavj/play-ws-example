@@ -31,12 +31,14 @@ public class HomeController extends Controller {
         request.addCookies(new WSCookieBuilder().setName("headerKey").setValue("headerValue").build());
         request.setRequestTimeout(Duration.of(1000, ChronoUnit.MILLIS));
         request.post("key1=value1&key2=value2"); // Submitting form data
-        */
 
         JsonNode json = Json.newObject()
                 .put("key1", "value1")
                 .put("key2", "value2");
         request.post(json);
+
+        */
+
 
         return request.get().thenApply((WSResponse r) -> {
             return ok("Feed title: " + r.getBody());
